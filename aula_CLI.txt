@@ -28,3 +28,20 @@ This command is in preview and under development. Reference and support levels: 
 Your current Azure CLI version is 2.82.0. It will be updated to 2.85.0.
 Not able to upgrade automatically. Instructions can be found at https://aka.ms/doc/InstallAzureCli
 CLI upgrade failed or aborted.
+
+gustavo [ ~ ]$ az account show
+{
+  "environmentName": "AzureCloud",
+  "homeTenantId": "11dbbfe2-89b8-4549-be10-cec364e59551",
+  "id": "9b16ca86-ee3c-4d9d-9836-c1d42f5e1cfd",
+  "isDefault": true,
+  "managedByTenants": [],
+  "name": "2TDSPG-2026-RM563428-GUSTAVO-KEIJI-OKADA",
+  "state": "Enabled",
+  "tenantId": "11dbbfe2-89b8-4549-be10-cec364e59551",
+  "user": {
+    "cloudShellID": true,
+    "name": "RM563428@fiap.com.br",
+    "type": "user"
+  }
+}
