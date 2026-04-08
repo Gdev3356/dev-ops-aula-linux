@@ -256,4 +256,28 @@ westus2stage
 westus3
 westusstage
 
+gustavo [ ~ ]$ az group create --name rg-dimdim-dev --location eastus
+{
+  "id": "/subscriptions/9b16ca86-ee3c-4d9d-9836-c1d42f5e1cfd/resourceGroups/rg-dimdim-dev",
+  "location": "eastus",
+  "managedBy": null,
+  "name": "rg-dimdim-dev",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
+}
+gustavo [ ~ ]$ az group show -n rg-dimdim-dev --query "{Name:name, Local:location, Tags:tags}"
+{
+  "Local": "eastus",
+  "Name": "rg-dimdim-dev",
+  "Tags": null
+}
+gustavo [ ~ ]$ az group delete -n rg-dimdim-dev --yes --no-wait
+gustavo [ ~ ]$ az group show -n rg-dimdim-dev --query "{Name:name, Local:location, Tags:tags}"
+(ResourceGroupNotFound) Resource group 'rg-dimdim-dev' could not be found.
+Code: ResourceGroupNotFound
+Message: Resource group 'rg-dimdim-dev' could not be found.
+
 
