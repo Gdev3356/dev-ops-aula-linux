@@ -1316,4 +1316,225 @@ gustavo [ ~ ]$ az vm list-sizes --location eastus -o table
 12                  114688        Standard_PB6s              6                1047552           753664
 16                  921600        Standard_ND96asr_v4        96               1047552           2969600
 
+az group create --name rg-dimdim-dev --location eastus
 
+{
+
+  "id": "/subscriptions/9b16ca86-ee3c-4d9d-9836-c1d42f5e1cfd/resourceGroups/rg-dimdim-dev",
+
+  "location": "eastus",
+
+  "managedBy": null,
+
+  "name": "rg-dimdim-dev",
+
+  "properties": {
+
+    "provisioningState": "Succeeded"
+
+  },
+
+  "tags": null,
+
+  "type": "Microsoft.Resources/resourceGroups"
+
+}
+
+
+az vm create \
+
+  --resource-group rg-dimdim-dev \
+
+  --location brazilsouth \
+
+  --name vm-dimdim-app \
+
+  --image Ubuntu2404 \
+
+  --size Standard_B2s \
+
+  --authentication-type password \
+
+  --admin-username admlnx \
+
+  --admin-password "Fiap@2tdsvms" \
+
+  --vnet-name nnet-Linux-br \
+
+  --nsg nsgr-linux-br \
+
+  --public-ip-address pip-linux-br \
+
+  --tags "owner=DimDim" "purpose=Training"
+
+The default value of '--size' will be changed to 'Standard_D2s_v5' from 'Standard_DS1_v2' in a future release.
+
+The command failed with an unexpected error. Here is the traceback:
+
+The content for this response was already consumed
+
+Traceback (most recent call last):
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/azure/cli/core/commands/__init__.py", line 706, in _run_job
+
+    result = cmd_copy(params)
+
+             ^^^^^^^^^^^^^^^^
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/azure/cli/core/commands/__init__.py", line 336, in __call__
+
+    return self.handler(*args, **kwargs)
+
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/azure/cli/core/commands/command_operation.py", line 120, in handler
+
+    return op(**command_args)
+
+           ^^^^^^^^^^^^^^^^^^
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/azure/cli/command_modules/vm/custom.py", line 1254, in create_vm
+
+    LongRunningOperation(cmd.cli_ctx)(client.begin_create_or_update(resource_group_name, deployment_name, deployment))
+
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/azure/core/tracing/decorator.py", line 119, in wrapper_use_tracer
+
+    return func(*args, **kwargs)
+
+           ^^^^^^^^^^^^^^^^^^^^^
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/azure/mgmt/resource/resources/v2024_11_01/operations/_operations.py", line 7094, in begin_create_or_update
+
+    raw_result = self._create_or_update_initial(
+
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/azure/mgmt/resource/resources/v2024_11_01/operations/_operations.py", line 6987, in _create_or_update_initial
+
+    raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+azure.core.exceptions.HttpResponseError: (InvalidTemplateDeployment) The template deployment failed with multiple errors. Please see details for more information.
+
+Code: InvalidTemplateDeployment
+
+Message: The template deployment failed with multiple errors. Please see details for more information.
+
+Exception Details:      (RequestDisallowedByAzure) Resource 'nnet-Linux-br' was disallowed by Azure: This policy maintains a set of best available regions where your subscription can deploy resources. The objective of this policy is to ensure that your subscription has full access to Azure services with optimal performance. Should you need additional or different regions, contact support..
+
+        Code: RequestDisallowedByAzure
+
+        Message: Resource 'nnet-Linux-br' was disallowed by Azure: This policy maintains a set of best available regions where your subscription can deploy resources. The objective of this policy is to ensure that your subscription has full access to Azure services with optimal performance. Should you need additional or different regions, contact support..
+
+        Target: nnet-Linux-br   (RequestDisallowedByAzure) Resource 'nsgr-linux-br' was disallowed by Azure: This policy maintains a set of best available regions where your subscription can deploy resources. The objective of this policy is to ensure that your subscription has full access to Azure services with optimal performance. Should you need additional or different regions, contact support..
+
+        Code: RequestDisallowedByAzure
+
+        Message: Resource 'nsgr-linux-br' was disallowed by Azure: This policy maintains a set of best available regions where your subscription can deploy resources. The objective of this policy is to ensure that your subscription has full access to Azure services with optimal performance. Should you need additional or different regions, contact support..
+
+        Target: nsgr-linux-br   (RequestDisallowedByAzure) Resource 'pip-linux-br' was disallowed by Azure: This policy maintains a set of best available regions where your subscription can deploy resources. The objective of this policy is to ensure that your subscription has full access to Azure services with optimal performance. Should you need additional or different regions, contact support..
+
+        Code: RequestDisallowedByAzure
+
+        Message: Resource 'pip-linux-br' was disallowed by Azure: This policy maintains a set of best available regions where your subscription can deploy resources. The objective of this policy is to ensure that your subscription has full access to Azure services with optimal performance. Should you need additional or different regions, contact support..
+
+        Target: pip-linux-br    (RequestDisallowedByAzure) Resource 'vm-dimdim-appVMNic' was disallowed by Azure: This policy maintains a set of best available regions where your subscription can deploy resources. The objective of this policy is to ensure that your subscription has full access to Azure services with optimal performance. Should you need additional or different regions, contact support..
+
+        Code: RequestDisallowedByAzure
+
+        Message: Resource 'vm-dimdim-appVMNic' was disallowed by Azure: This policy maintains a set of best available regions where your subscription can deploy resources. The objective of this policy is to ensure that your subscription has full access to Azure services with optimal performance. Should you need additional or different regions, contact support..
+
+        Target: vm-dimdim-appVMNic      (RequestDisallowedByAzure) Resource 'vm-dimdim-app' was disallowed by Azure: This policy maintains a set of best available regions where your subscription can deploy resources. The objective of this policy is to ensure that your subscription has full access to Azure services with optimal performance. Should you need additional or different regions, contact support..
+
+        Code: RequestDisallowedByAzure
+
+        Message: Resource 'vm-dimdim-app' was disallowed by Azure: This policy maintains a set of best available regions where your subscription can deploy resources. The objective of this policy is to ensure that your subscription has full access to Azure services with optimal performance. Should you need additional or different regions, contact support..
+
+        Target: vm-dimdim-app
+
+
+
+During handling of the above exception, another exception occurred:
+
+
+
+Traceback (most recent call last):
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/azure/cli/core/commands/arm.py", line 109, in handle_template_based_exception
+
+    raise CLIError(ex.inner_exception.error.message)
+
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+
+AttributeError: 'NoneType' object has no attribute 'error'
+
+
+
+During handling of the above exception, another exception occurred:
+
+
+
+Traceback (most recent call last):
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/knack/cli.py", line 233, in invoke
+
+    cmd_result = self.invocation.execute(args)
+
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/azure/cli/core/commands/__init__.py", line 669, in execute
+
+    raise ex
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/azure/cli/core/commands/__init__.py", line 737, in _run_jobs_serially
+
+    results.append(self._run_job(expanded_arg, cmd_copy))
+
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/azure/cli/core/commands/__init__.py", line 729, in _run_job
+
+    return cmd_copy.exception_handler(ex)
+
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/azure/cli/core/commands/arm.py", line 112, in handle_template_based_exception
+
+    raise_subdivision_deployment_error(ex.response.internal_response.text, ex.error.code if ex.error else None)
+
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/requests/models.py", line 926, in text
+
+    if not self.content:
+
+           ^^^^^^^^^^^^
+
+  File "/usr/lib64/az/lib/python3.12/site-packages/requests/models.py", line 897, in content
+
+    raise RuntimeError("The content for this response was already consumed")
+
+RuntimeError: The content for this response was already consumed
+
+To check existing issues, please visit: https://github.com/Azure/azure-cli/issues
+
+
+
+
+
+az policy assignment list --query "[].{Name:displayName, Scope:scope}" -o table
+
+Name                                                              Scope
+
+----------------------------------------------------------------  ---------------------------------------------------
+
+ASC Default (subscription: 9b16ca86-ee3c-4d9d-9836-c1d42f5e1cfd)  /subscriptions/9b16ca86-ee3c-4d9d-9836-c1d42f5e1cfd
+
+Allowed resource deployment regions                               /subscriptions/9b16ca86-ee3c-4d9d-9836-c1d42f5e1cfd
+
+az vm list-skus --location eastus --size Standard_B2s --all --output table
+ResourceType     Locations    Name             Zones    Restrictions
+---------------  -----------  ---------------  -------  ----------------------------------------------------------------------------------------------------------------------------------------------
+virtualMachines  eastus       Standard_B2s     1,2,3    ['NotAvailableForSubscription, type: Location, locations: eastus', 'NotAvailableForSubscription, type: Zone, locations: eastus, zones: 1,2,3']
+virtualMachines  eastus       Standard_B2s_v2  1,2,3    ['NotAvailableForSubscription, type: Location, locations: eastus', 'NotAvailableForSubscription, type: Zone, locations: eastus, zones: 1,2,3']
