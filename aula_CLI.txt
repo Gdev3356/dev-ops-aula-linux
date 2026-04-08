@@ -280,4 +280,11 @@ gustavo [ ~ ]$ az group show -n rg-dimdim-dev --query "{Name:name, Local:locatio
 Code: ResourceGroupNotFound
 Message: Resource group 'rg-dimdim-dev' could not be found.
 
+gustavo [ ~ ]$ az vm image list --offer "server-focal" --publisher canonical --sku "20_04-lts" --all -o table
+Architecture    Offer                         Publisher    Sku              Urn                                                                     Version
+--------------  ----------------------------  -----------  ---------------  ----------------------------------------------------------------------  ---------------
+x64             0001-com-ubuntu-server-focal  Canonical    20_04-lts        Canonical:0001-com-ubuntu-server-focal:20_04-lts:20.04.202505200        20.04.202505200
+Arm64           0001-com-ubuntu-server-focal  Canonical    20_04-lts-arm64  Canonical:0001-com-ubuntu-server-focal:20_04-lts-arm64:20.04.202505200  20.04.202505200
+x64             0001-com-ubuntu-server-focal  Canonical    20_04-lts-gen2   Canonical:0001-com-ubuntu-server-focal:20_04-lts-gen2:20.04.202505200   20.04.202505200
+
 
